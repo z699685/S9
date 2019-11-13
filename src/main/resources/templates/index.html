@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap 101 Template</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+</head>
+<body style="margin: 20px">
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+	<div class="btn-group">
+		<button type="button" class="btn btn-danger">查询</button>
+		<button type="button" class="btn btn-danger dropdown-toggle"
+			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="caret"></span> <span class="sr-only">Toggle
+				Dropdown</span>
+		</button>
+		<ul class="dropdown-menu">
+			<li th:each="Match:${list}"><a th:href="@{/(id=${Match.id})}"
+				th:text="${Match.name}">Action</a></li>
+			<li role="separator" class="divider"></li>
+			<li ><a href="#">Separated link</a></li>
+		</ul>
+	</div>
+	<ul class="list-group" th:each="Result:${result}">
+		<li class="list-group-item list-group-item-success"
+			th:text="${Result.name}">Dapibus ac facilisis in</li>
+			<li class="list-group-item list-group-item-info"
+			th:text="比分：+${Result.result}">Cras sit amet nibh libero</li>
+		<li class="list-group-item list-group-item-info"
+			th:text="比赛时间：+${Result.played_time}">Cras sit amet nibh libero</li>
+	</ul>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script type="text/javascript">
+var a_idx = 0;
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+        var a = new Array("富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善","❤加油❤","❤努力❤",);
+        var $i = $("<span></span>").text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;
+        var x = e.pageX,
+        y = e.pageY;
+        $i.css({
+            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $i.remove();
+        });
+    });
+});
+</script>
+</body>
+</html>
